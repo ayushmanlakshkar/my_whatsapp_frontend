@@ -81,6 +81,7 @@ const Contacts = () => {
 
 const logo_url = (url)=>{
    const logoURL= BASE_URL+ url.substring(7)
+   console.log(logoURL)
     return logoURL
 }
 
