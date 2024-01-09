@@ -6,18 +6,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Box, TextField, Avatar, Button, IconButton, InputAdornment } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import '../styles/login.css'
-import { setuser_details } from '../store/slices/userslice';
-import { setstatus } from '../store/slices/isloggedslice';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { setToastMessage } from '../store/slices/toastSlice';
 import { BASE_URL } from '../services/Api';
 
 const Login_in = () => {
-  const user = useSelector((state) => state.user.username)
   const dispatch = useDispatch()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')   
   const [showpassword, setShowpassword] = useState(false)
-  const [error, setError] = useState('')
 const navigate=useNavigate()
 
 
@@ -36,7 +33,7 @@ const navigate=useNavigate()
 
   return (
     <Box id='box' component='form' onSubmit={submit}>
-      <Avatar src="/broken-image.jpg" sx={{ width: 56, height: 56 }} />
+     <AccountCircleIcon sx={{ width: 80, height: 80 }}/>
       <TextField fullWidth label="Username" className='input' value={username} onChange={(e) => { setUsername(e.target.value) }} />
       <TextField
         fullWidth
@@ -55,7 +52,6 @@ const navigate=useNavigate()
           ),
         }}
       />
-      {error ? <div className='error'>{error}</div> : ""}
       <Button type='submit' variant="contained">Log IN</Button>
     </Box>
   )
