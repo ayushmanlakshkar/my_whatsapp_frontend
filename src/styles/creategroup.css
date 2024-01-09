@@ -1,0 +1,55 @@
+.create-group-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-group-input{
+    height: 20px;
+    width: 80%;
+    display: inline;
+    padding: 10px 20px ;
+    font-size: larger;
+    margin: 20px 0px;
+    border-radius: 20px;
+    background-color: rgb(31,44,51);
+    border: 1px solid rgb(31,44,51);
+    color: aliceblue;
+}
+.create-group-input:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.profile_group{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.profile_picture_group{
+    background-color: #1F2C33;
+    height: 20px;
+    padding: 8px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.profile_picture_group:hover{
+    cursor: pointer;
+background-color: #3C425F;
+}
+
+.image_shower_group{
+    display: inline;
+    width: 130px;
+    margin: 0px auto;
+    height: 130px;
+    border-radius: 50%;
+}
