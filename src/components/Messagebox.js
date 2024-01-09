@@ -26,8 +26,8 @@ const Messagebox = () => {
   };
 
 
-  const image_url = (base_url) => {
-    const imageURL = `http://localhost:3001/` + base_url.substring(7)
+  const image_url = (url) => {
+    const imageURL = BASE_URL + url.substring(7)
     return imageURL
   }
 

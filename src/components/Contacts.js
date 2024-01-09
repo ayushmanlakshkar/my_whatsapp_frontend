@@ -79,8 +79,8 @@ const Contacts = () => {
     })
   }
 
-const logo_url = (base_url)=>{
-   const logoURL= `http://localhost:3001/`+ base_url.substring(7)
+const logo_url = (url)=>{
+   const logoURL= BASE_URL+ url.substring(7)
     return logoURL
 }
 
