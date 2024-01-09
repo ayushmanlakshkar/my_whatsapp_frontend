@@ -20,7 +20,7 @@ const Chatfeature = () => {
   const dispatch = useDispatch()
 
   const collapsenavbar = () => {
-    dispatch(setcollapsed(!iscollapsed))
+    dispatch(setcollapsed(false))
   }
 
   const reset_presentchat = async () => {
