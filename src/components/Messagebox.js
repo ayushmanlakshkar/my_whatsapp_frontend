@@ -35,6 +35,8 @@ const Messagebox = () => {
   }
 
   useEffect(() => {
+    dispatch(setMessages([]));
+    get_messages();
     socket.on("send_message", (data) => {
       if (data.type == "friends") {
         if (data.type == presentChat.type && data.username == presentChat.chatname) {
@@ -46,8 +48,7 @@ const Messagebox = () => {
         }
       }
     });
-
-    get_messages();
+ 
     return () => {
       socket.off("send_message")
     }
