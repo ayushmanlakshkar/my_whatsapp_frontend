@@ -12,8 +12,11 @@ const Messagebox = () => {
   const navbar_collapsed = useSelector(state => state.navbar.status)
   const dispatch = useDispatch()
 
+  console.log(presentChat.messages)
+
   const get_messages = async () => {
     await axios.post(`${BASE_URL}chats/get_messages`, { type: presentChat.type, chatname: presentChat.chatname, username: user }).then((response) => {
+      console.log(response.data)
       dispatch(setMessages(response.data));
     })
   }
@@ -35,11 +38,11 @@ const Messagebox = () => {
     socket.on("send_message", (data) => {
       if (data.type == "friends") {
         if (data.type == presentChat.type && data.username == presentChat.chatname) {
-          dispatch(appendMessages({ type: data.type, username: data.username, key: data.key, message: data.message,image:data.image, timestamp: data.timestamp }));
+          dispatch(appendMessages({ type: data.type, username: data.username, key: data.key, message: data.message, image: data.image, timestamp: data.timestamp }));
         }
       } else {
         if (data.type == presentChat.type && data.reciever == presentChat.chatname) {
-          dispatch(appendMessages({ type: data.type, username: data.username, key: data.key, message: data.message,image:data.image, timestamp: data.timestamp }));
+          dispatch(appendMessages({ type: data.type, username: data.username, key: data.key, message: data.message, image: data.image, timestamp: data.timestamp }));
         }
       }
     });
@@ -64,15 +67,15 @@ const Messagebox = () => {
   return (
     <div id="messages-container" className='messagebox'>
       {presentChat.messages.map((message) => (
-        <div className={`msg ${user === message.username ? "right" : "left"}`} key={message.key}>
+        <div className={`msg ${user === message.username.name ? "right" : "left"}`} key={message.key}>
           <div className='logo'><img src={presentChat.profilePic} /></div>
           <div className='msgdetails'>
-            {presentChat.type === "friends" ? <></> : <span className='msg-username'>{message.username} </span>}
+            {presentChat.type === "friends" ? <></> : <span className='msg-username'>{message.username.name} </span>}
             <div className={`msg-content ${message.typing ? "typing" : ""}`}>
-            {message.image && <div className='msg-image'><img src={image_url(message.image)}/></div>}
-            <span className={`msg-message ${user === message.username? "right-msg" : "left-msg"}`}>{message.message}</span>
+              {message.image && <div className='msg-image'><img src={image_url(message.image)} /></div>}
+              <span className={`msg-message ${user === message.username ? "right-msg" : "left-msg"}`}>{message.message}</span>
             </div>
-            <span className='timestamp'>{message.timestamp.date}<br/>{message.timestamp.time}</span>
+            <span className='timestamp'>{message.timestamp.date}<br />{message.timestamp.time}</span>
           </div>
         </div>
       ))}
