@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://my-whatsapp-backend.onrender.com'
+export const BASE_URL = 'https://my-whatsapp-backend.onrender.com/'
