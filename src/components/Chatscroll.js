@@ -7,7 +7,7 @@ import Messagebox from './Messagebox'
 const Chatscroll = () => {
   const presentChat= useSelector(state=>state.presentchat.chatname)
   return (
-    <div className={`chatscroll ${presentChat?<></>:"backgroundfirst"}`}>
+    <div className={`chatscroll ${presentChat?'defaultBackground':"backgroundfirst"}`}>
       {presentChat?<><Messagebox/>
      <Messagebar/></>:<></>}
     </div>
