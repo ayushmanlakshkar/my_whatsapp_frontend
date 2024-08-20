@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { appendMessages, setMessages } from '../store/slices/presentchatslice'
 import { BASE_URL } from '../services/Api'
 import '../styles/messagebox.css'
+import { formatTimeStamp } from '../utils/TimeStamp'
 
 const Messagebox = () => {
   const user = useSelector(state => state.user.username)
@@ -76,7 +77,7 @@ const Messagebox = () => {
               {message.image && <div className='msg-image'><img src={image_url(message.image)} /></div>}
               <span className={`msg-message ${user === message.username ? "right-msg" : "left-msg"}`}>{message.message}</span>
             </div>
-            <span className='timestamp'>{message.timestamp.date}<br />{message.timestamp.time}</span>
+            <span className='timestamp'>{formatTimeStamp(message.timestamp).date}<br />{formatTimeStamp(message.timestamp).time}</span>
           </div>
         </div>
       ))}

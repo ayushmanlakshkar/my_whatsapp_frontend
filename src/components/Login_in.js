@@ -22,6 +22,7 @@ const navigate=useNavigate()
   const submit = async (e) => {
     e.preventDefault();
     await axios.post(`${BASE_URL}auth/login`, { username, password }).then((response) => {
+      console.log(response)
       localStorage.setItem('token', response.data.token)
       navigate(`/${username}`)
       dispatch(setToastMessage({message:response.data.message,type:true}))
