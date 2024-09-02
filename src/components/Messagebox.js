@@ -3,7 +3,6 @@ import axios from 'axios'
 import { socket } from '../socket-connection/socket'
 import { useSelector, useDispatch } from 'react-redux'
 import { appendMessages, setMessages } from '../store/slices/presentchatslice'
-import { BASE_URL } from '../services/Api'
 import '../styles/messagebox.css'
 import { formatTimeStamp } from '../utils/TimeStamp'
 
@@ -16,7 +15,7 @@ const Messagebox = () => {
   console.log(presentChat.messages)
 
   const get_messages = async () => {
-    await axios.post(`${BASE_URL}chats/get_messages`, { type: presentChat.type, chatname: presentChat.chatname, username: user }).then((response) => {
+    await axios.post(`${process.env.REACT_APP_BASE_URI}/chats/get_messages`, { type: presentChat.type, chatname: presentChat.chatname, username: user }).then((response) => {
       console.log(response.data)
       dispatch(setMessages(response.data));
     })
@@ -31,7 +30,7 @@ const Messagebox = () => {
 
 
   const image_url = (url) => {
-    const imageURL = BASE_URL + url.substring(7)
+    const imageURL = process.env.REACT_APP_BASE_URI + url.substring(7)
     return imageURL
   }
 

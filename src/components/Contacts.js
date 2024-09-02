@@ -12,7 +12,6 @@ import { setChatname } from '../store/slices/presentchatslice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { setToastMessage } from '../store/slices/toastSlice';
-import { BASE_URL } from '../services/Api';
 
 
 const Contacts = () => {
@@ -45,7 +44,7 @@ const Contacts = () => {
 
 
   const send_friendrequest = async (contactname) => {
-    await axios.post(`${BASE_URL}contact/send_friendrequest`, { sender: user, reciever: contactname }).then((response) => {
+    await axios.post(`${process.env.REACT_APP_BASE_URIP_BASE_URI}contact/send_friendrequest`, { sender: user, reciever: contactname }).then((response) => {
       socket.emit('send_friend_request', { sender: user, reciever: contactname });
       dispatch(setToastMessage({message: response.data,type:true}))
     }).catch((error) => {
@@ -54,7 +53,7 @@ const Contacts = () => {
   };
 
   const accept_friend_request = async (contactname) => {
-    await axios.post(`${BASE_URL}contact/accept_friend`, { username: user, friend: contactname }).then((response) => {
+    await axios.post(`${process.env.REACT_APP_BASE_URIP_BASE_URI}contact/accept_friend`, { username: user, friend: contactname }).then((response) => {
       socket.emit('accept_reject_friend', { username: user, friend: contactname, acceptance: true });
       dispatch(setToastMessage({message: response.data,type:true}))
     }).catch((error) => {
@@ -63,7 +62,7 @@ const Contacts = () => {
   };
 
   const reject_friend_request = async (contactname) => {
-    await axios.post(`${BASE_URL}contact/reject_friend`, { username: user, friend_request: contactname }).then((response) => {
+    await axios.post(`${process.env.REACT_APP_BASE_URIP_BASE_URI}contact/reject_friend`, { username: user, friend_request: contactname }).then((response) => {
       socket.emit('accept_reject_friend', { username: user, friend: contactname, acceptance: false });
       dispatch(setToastMessage({message: response.data,type:true}))
     }).catch((error) => {
@@ -72,7 +71,7 @@ const Contacts = () => {
   };
 
   const join_group = async (contactname) => {
-    await axios.post(`${BASE_URL}contact/add_group`, { username: user, groupname: contactname }).then((response) => {
+    await axios.post(`${process.env.REACT_APP_BASE_URIP_BASE_URI}contact/add_group`, { username: user, groupname: contactname }).then((response) => {
       dispatch(setToastMessage({message: response.data,type:true}))
     }).catch((error) => {
       dispatch(setToastMessage({message:error.response.data,type:false}))
@@ -80,7 +79,7 @@ const Contacts = () => {
   }
 
 const logo_url = (url)=>{
-   const logoURL= BASE_URL+ url.substring(7)
+   const logoURL= process.env.REACT_APP_BASE_URIP_BASE_URI+ url.substring(7)
    console.log(logoURL)
     return logoURL
 }

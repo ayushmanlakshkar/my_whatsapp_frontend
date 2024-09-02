@@ -8,7 +8,6 @@ import { Visibility, VisibilityOff } from '@mui/icons-material'
 import '../styles/login.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { setToastMessage } from '../store/slices/toastSlice';
-import { BASE_URL } from '../services/Api';
 
 const Login_in = () => {
   const dispatch = useDispatch()
@@ -21,7 +20,7 @@ const navigate=useNavigate()
 
   const submit = async (e) => {
     e.preventDefault();
-    await axios.post(`${BASE_URL}auth/login`, { username, password }).then((response) => {
+    await axios.post(`${process.env.REACT_APP_BASE_URI}/auth/login`, { username, password }).then((response) => {
       console.log(response)
       localStorage.setItem('token', response.data.token)
       navigate(`/${username}`)

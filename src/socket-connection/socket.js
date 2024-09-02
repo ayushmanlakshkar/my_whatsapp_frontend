@@ -1,6 +1,5 @@
 import  io  from "socket.io-client"
-import { BASE_URL } from "../services/Api"
-const socket = io.connect(BASE_URL)
+const socket = io.connect(process.env.REACT_APP_BASE_URI)
 
 const connect_socket = ()=>{
     socket.on("connect",(s)=> {
