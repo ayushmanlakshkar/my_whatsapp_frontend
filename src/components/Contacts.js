@@ -78,11 +78,10 @@ const Contacts = () => {
     })
   }
 
-const logo_url = (url)=>{
-   const logoURL= process.env.REACT_APP_BASE_URI+ url.substring(7)
-   console.log(logoURL)
+  const logo_url = (url) => {
+    const logoURL = `${process.env.REACT_APP_BASE_URI}/${url.substring(7)}`
     return logoURL
-}
+  }
 
 
   useEffect(() => {
