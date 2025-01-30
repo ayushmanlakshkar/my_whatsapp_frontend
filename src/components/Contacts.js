@@ -78,7 +78,7 @@ const Contacts = () => {
     })
   }
 
-  const logo_url = (url) => {
+  const logoUrl = (url) => {
     const logoURL = `${process.env.REACT_APP_BASE_URI}/${url.substring(7)}`
     return logoURL
   }
@@ -120,8 +120,8 @@ const Contacts = () => {
     <div className='contact-list'>
       {temporary_contacts.length > 0 ? (
         temporary_contacts.map((contact) => (
-          <div className={`contact ${presentChatname == contact.name ? 'chatting' : ''}`} key={contact.name} onClick={() => { { friend_req_options.friends ? dispatch(setChatname({ chatname: contact.name, type: key ,profilePic:logo_url(contact.profile)})) : <></> } }}>
-            <div className='contact-logo'><img src={logo_url(contact.profile)} /></div>
+          <div className={`contact ${presentChatname == contact.name ? 'chatting' : ''}`} key={contact.name} onClick={() => { { friend_req_options.friends ? dispatch(setChatname({ chatname: contact.name, type: key ,profilePic:logoUrl(contact.profile)})) : <></> } }}>
+            <div className='contact-logo'><img src={logoUrl(contact.profile)} /></div>
             <span className='contact-name'>{contact.name}</span>
             {contact.isOnline && <span className='online-container'> <span className='online-icon'></span><span>online</span> </span>}
             {friend_req_options.add_friend ?
